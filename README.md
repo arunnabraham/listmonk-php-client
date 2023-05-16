@@ -5,7 +5,7 @@
 #### Installation
 
 ```
-composer require Neoxenos/listmonk-php-client
+composer require neoxenos/listmonk-php-client
 
 ```
 
