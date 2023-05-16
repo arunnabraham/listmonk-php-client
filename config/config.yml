@@ -1,0 +1,41 @@
+parameters:
+  username: ''
+  password: ''
+  baseurl: ''
+
+services:
+  _defaults:
+        autowire: true
+        autoconfigure: true
+  
+  Neoxenos\ListMonkClient\: 
+                      resource: "../src"
+                      exclude: "../src/Initiate/{Bootstrap,ListmonkClientFactory}"
+
+  app.config:
+      class: Neoxenos\ListMonkClient\Config\InputSetConfig
+      arguments:
+              - "%username%"
+              - "%password%"
+              - "%baseurl%"
+
+  app.authable:
+      class: Neoxenos\ListMonkClient\Auth\Authable
+      arguments: ["@app.config"]
+
+  app.client:
+      class: GuzzleHttp\Client
+
+  app.guzzleclient:
+      class: Neoxenos\ListMonkClient\CoreClient\Clients\GuzzleClient
+      arguments: ["@app.client", "@app.config"]
+
+  app.httpclient:
+      class: Neoxenos\ListMonkClient\Config\HttpClient
+      arguments: ["@app.guzzleclient"]
+
+  app.sendTransactionMail:
+      class: Neoxenos\ListMonkClient\ListMonk\SendTransactionalMail
+      arguments: ["@app.authable", "@app.httpclient"]
+
+

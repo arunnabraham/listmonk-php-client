@@ -1,0 +1,17 @@
+{
+    "name" : "neoxenos/listmonk-php-client",
+    "autoload": {
+        "psr-4": {
+            "Neoxenos\\ListMonkClient\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.5",
+        "guzzlehttp/psr7": "^2.5",
+        "symfony/dependency-injection": "^6.2",
+        "symfony/config": "^6.2",
+        "symfony/yaml": "^6.2",
+        "symfony/finder": "^6.2"
+    }
+}
